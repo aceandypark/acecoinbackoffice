@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CommonSessionDB - Sign Up sample</title>
+	<style type="text/css">
+		div
+		{
+			text-align: center;
+		}
+	</style>
+
+	<script src="js/cmsessiondb.js"></script>
+	<script type="text/javascript">
+		function signUp() {
+			var name = document.getElementById('name').value;
+			var password = document.getElementById('password').value;
+			var id = document.getElementById('id').value;
+			var email = document.getElementById('email').value;
+
+			var rowData = '{"name":"' + name + '", "password":"' + password + '","id":"' + id + '","email":"' + email + '"}';
+			alert(rowData)
+
+			SessionDB.insertRow("UserTable", rowData);
+		}
+	</script>
+</head>
+<body>
+<div>
+	<input type="text" name="name" id="name" value="" placeholder="name">
+</div>
+<div>
+	<input type="password" name="password" id="password" value="" placeholder="password">
+</div>
+<div>
+	<input type="text" name="id" id="id" value="" placeholder="ID">
+</div>
+<div>
+	<input type="text" name="email" id="email" value="" placeholder="email">
+</div>
+<div>
+	<button id="signup" onClick="signUp();">Sign Up</button>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CommonSessionDB - Login sample</title>
+	<style type="text/css">
+		div
+		{
+			text-align: center;
+		}
+	</style>
+
+	<script src="js/cmsessiondb.js"></script>
+	<script type="text/javascript">
+		function login() {
+			SessionDB.init('local');
+
+			var password = document.getElementById('password').value;
+			var id = document.getElementById('id').value;
+
+			var param = {};
+
+			param.id = id;
+			param.password = password;
+
+			var result = SessionDB.selectRow("UserTable", param);
+
+			if (result != null) {
+				window.location.href = "userList.html";
+			} else {
+				alert("ID 또는 비밀번호가 올바르지 않습니다.");
+			}
+		}
+	</script>
+</head>
+<body>
+<div>
+	<input type="text" name="id" id="id" value="" placeholder="ID">
+</div>
+<div>
+	<input type="password" name="password" id="password" value="" placeholder="password">
+</div>
+<div>
+	<button id="login" onClick="login();">Login</button>
+</div>
+
+</body>
+</html>

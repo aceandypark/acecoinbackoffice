@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CommonSessionDB</title>
+	<script src="js/cmsessiondb.js"></script>
+	<script type="text/javascript">
+		
+	function createTable() {
+		var tblNm = document.getElementById('tblNm').value;
+		SessionDB.createTable(tblNm);
+	}
+
+	function getTableList() {
+		var tblList = SessionDB.getTableList();
+		alert("table list = " + JSON.stringify(tblList));
+	}
+
+	function dropTable() {
+		var tblNm = document.getElementById('dropTblNm').value;
+		SessionDB.dropTable(tblNm);
+	}
+
+	function insertData() {
+		var tblName = document.getElementById('insertTblNm').value;
+		var rowData = document.getElementById('rowData').value;
+
+		SessionDB.insertRow(tblName, rowData);
+	}
+
+	function getTable() {
+		var tblName = document.getElementById('insertTblNm').value;
+		alert(SessionDB.getTable(tblName));
+	}
+
+	function selectRow() {
+		var tblName = document.getElementById('selTblNm').value;
+		var col = document.getElementById('column').value;
+		var val = document.getElementById('val').value;
+
+		var param = {};
+
+		param[col] = val;
+
+		SessionDB.selectRow(tblName, param);
+	}
+
+	function deleteRow() {
+		var tblName = document.getElementById('delTblNm').value;
+		var col = document.getElementById('delcolumn').value;
+		var val = document.getElementById('delval').value;
+
+		SessionDB.deleteRow(tblName, col, val);
+	}
+
+	function updateRow() {
+		var tblName = document.getElementById('updateTblNm').value;
+		var col = document.getElementById('updatecolumn').value;
+		var val = document.getElementById('updateval').value;
+		var newcol = document.getElementById('newcolumn').value;
+		var newval = document.getElementById('newval').value;
+
+		SessionDB.updateRow(tblName, col, val, newcol, newval);
+	}
+	</script>
+</head>
+<body>
+	<h1>Crete Table</h1>
+	<p></p>
+	<input type="text" name="tblNm" id="tblNm" value=""><button onClick="createTable();">Create Table</button><button onClick="getTableList();">Get Table List</button>
+	<hr>
+	<h1>Drop Table</h1>
+	<p></p>
+	<input type="text" name="dropTblNm" id="dropTblNm" value=""><button onClick="dropTable();">Drop Table</button>
+	<hr>
+	<h1>Insert Row</h1>
+	<p></p>
+	<input type="text" name="insertTblNm" id="insertTblNm" value=""><input type="text" name="rowData" id="rowData" value=""><button onClick="insertData();">Insert Data</button><button onClick="getTable();">Get Table</button>
+	<hr>
+	<h1>Select Row</h1>
+	<p></p>
+	<input type='text' id='selTblNm' value=''><input type='text' id='column' value=''><input type='text' id='val' value=''>
+	<button onClick="selectRow()">Select Row</button>
+	<hr>
+	<h1>Delete Row</h1>
+	<p></p>
+	<input type='text' id='delTblNm' value=''><input type='text' id='delcolumn' value=''><input type='text' id='delval' value=''>
+	<button onClick="deleteRow()">Delete Row</button>
+	<hr>
+	<h1>Update Row</h1>
+	<p></p>
+	<input type='text' id='updateTblNm' value=''><input type='text' id='updatecolumn' value=''><input type='text' id='updateval' value=''><input type='text' id='newcolumn' value=''><input type='text' id='newval' value=''>
+	<button onClick="updateRow()">Update Row</button>
+</body>
+</html>
