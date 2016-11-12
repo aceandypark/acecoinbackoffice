@@ -1,6 +1,17 @@
+/**
+* 	@SessionDB core module
+*	@개발자 : mazdah (blog : http://mazdah.tistory.com, twitter : mazdah70, facebook : 우형준)
+*	@Project : https://github.com/mazdah/SessionDB
+*/
+
 var SessionDB = function () {
 	var StrorageDB;
 
+	/**
+	*	@ SessionDB 초기화 : sessionStorage를 사용할 것인지, localStorage를 사용할 것인지 설정
+	*	@ parameter : tblType String ('session' 또는 'local')
+	*	@ return : 
+	*/
 	var _init = function(tblType) {
 		if ('session' == tblType) {
 			StrorageDB = window.sessionStorage;
@@ -13,6 +24,11 @@ var SessionDB = function () {
 		}
 	};
 	
+	/**
+	* 	@ 테이블 생성
+	*	@ parameter : tblNm String (테이블 이름, 문자열)
+	*	@ return : boolean
+	*/
 	var _createTable = function (tblNm) {
 
 		if (tblNm == undefined || '' == tblNm) {
@@ -37,6 +53,11 @@ var SessionDB = function () {
 		return true;
 	};
 	
+	/**
+	* 	@ 테이블 목록 조회
+	*	@ parameter : 
+	*	@ return : 테이블 이름이 담긴 JSNON 배열 객체
+	*/
 	var _getTableList = function() {
 		if (StrorageDB.tableList == undefined || StrorageDB.tableList == "") {
 			return undefined;
@@ -51,6 +72,11 @@ var SessionDB = function () {
 		return tableArr;
 	};
 	
+	/**
+	* 	@ 테이블 Drop
+	*	@ parameter : tblNm String (테이블 이름, 문자열)
+	*	@ return : 
+	*/
 	var _dropTable = function (tblNm)  {
 		if (StrorageDB[tblNm] == undefined) {
 			alert('존재하 않는 테이블입니다.');
@@ -71,6 +97,11 @@ var SessionDB = function () {
 		}
 	};
 
+	/**
+	* 	@ 테이블에 다수의 데이터 import
+	*	@ parameter : tblNm String (테이블 이름, 문자열), dataArr JSON array (입력할 데이터 객체 배열), mode String (기존 데이터에 추가할 것인지 전체 테이블을 대체할 것인지에 대한 플래그)
+	*	@ return : 
+	*/
 	var _importTable = function (tblNm, dataArr, mode) {
 		if (mode == undefined || '' == mode) {
 			mode = 'add';
@@ -105,6 +136,11 @@ var SessionDB = function () {
 		return dataArr.length;
 	};
 	
+	/**
+	* 	@ 테이블에 데이터 insert
+	*	@ parameter : tblNm String (테이블 이름, 문자열), rowData String (JSON 포맷의 문자열)
+	*	@ return : 0 - insert 실패, 1 - insert 성공
+	*/
 	var _insertRow = function(tblNm, rowData) {
 		if (tblNm == undefined || '' == tblNm) {
 			alert('Table 이름은 필수입니다.');
@@ -149,6 +185,11 @@ var SessionDB = function () {
 		return 1;
 	};
 
+	/**
+	* 	@ 테이블 가져오기
+	*	@ parameter : tblNm String (테이블 이름, 문자열)
+	*	@ return : String (테이블 정보가 담긴 JSON 포맷 문자열)
+	*/
 	var _getTable = function(tblNm) {
 		if (tblNm == undefined || '' == tblNm || StrorageDB[tblNm] == undefined) {
 			alert("존재하지 않는 테이블입니다.");
@@ -157,6 +198,11 @@ var SessionDB = function () {
 		return StrorageDB[tblNm];
 	};
 
+	/**
+	* 	@ 데이터 select
+	*	@ parameter : tblNm String (테이블 이름, 문자열), param JSON object (key:value 쌍의 기본적인 JSON 객체)
+	*	@ return : Array object (param 조건에 맞는 데이터 객체의 배열)
+	*/
 	var _selectRow = function(tblNm, param) {
 		if (tblNm == undefined || '' == tblNm) {
 			alert('Table 이름은 필수입니다.');
@@ -206,6 +252,11 @@ var SessionDB = function () {
 		}
 	};
 
+	/**
+	* 	@ 데이터 delete
+	*	@ parameter : tblNm String (테이블 이름, 문자열), col String (삭제할 조건이 되는 key), val String (삭제할 조건이 되는 값)
+	*	@ return : number (실패 : 0, 성공 : 삭제된 데이터 건수)
+	*/
 	var _deleteRow = function(tblNm, col, val) {
 		if (tblNm == undefined || '' == tblNm || val == undefined || '' == val || col == undefined || '' == col) {
 			alert('Table 이름과 컬럼 이름과 컬럼 값은 필수입니다.');
@@ -244,6 +295,11 @@ var SessionDB = function () {
 		}
 	}
 
+	/**
+	* 	@ 데이터 update
+	*	@ parameter : tblNm String (테이블 이름, 문자열), col String (업데이트할 조건이 되는 key), val String (업데이트할 조건이 되는 값), param JSON object(업데이트할 데이터)
+	*	@ return : number (실패 : 0, 성공 : 삭제된 데이터 건수)
+	*/
 	var _updateRow = function(tblNm, col, val, param) {
 		if (tblNm == undefined || '' == tblNm || val == undefined || '' == val || col == undefined) {
 			alert('Table 이름과 컬럼 이름과 컬럼 값은 필수입니다.');
