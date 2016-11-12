@@ -13,6 +13,10 @@ Web Storage의 두 객체인 sessionStorage와 localStorage를 임시 DB로 사�
 - 빠른 프로토타입을 만들어 전체 흐름을 훑어보기 위해서
 - 프로젝트 초기 네트워크 환경이 갖춰지지 않은 곳에서 간이 DB로 사용
 
+### Introduce
+
+Blog : [http://mazdah.tistory.com/721]
+
 ###소스 코드 
 
 Repositary : [https://github.com/mazdah/SessionDB]
