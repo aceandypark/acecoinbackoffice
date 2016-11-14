@@ -200,7 +200,7 @@ var view = function() {
         	appendStr = '<li class="list-group-item">' +
                 			'생성된 테이블이 없습니다.' +
              				'</li>';
-            $('._group-local-table').append(appendStr);
+            $('._group-session-table').append(appendStr);
         } else {
         	for (i = 0; i < sCnt; i++) {
         		var tableStr = window.sessionStorage[sStorageArr[i]];
