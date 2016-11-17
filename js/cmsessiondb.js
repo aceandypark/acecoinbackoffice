@@ -193,7 +193,7 @@ var SessionDB = function () {
 	var _getTable = function(tblNm) {
 		if (tblNm == undefined || '' == tblNm || StrorageDB[tblNm] == undefined) {
 			alert("존재하지 않는 테이블입니다.");
-			return;
+			return null;
 		}
 		return StrorageDB[tblNm];
 	};
